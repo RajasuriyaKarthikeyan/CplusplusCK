@@ -12,7 +12,7 @@ int main(){
     int i=0, j=l-1;
     while(i < j){
         char c = name[i];
-        name[i]= name[j];
+        name[i] = name[j];
         name[j] = c;
         i++;
         j--;
