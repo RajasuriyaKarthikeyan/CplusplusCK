@@ -1,0 +1,12 @@
+total 40
+-rw-rw-r-- 1 rajasck rajasck    0 Mar 23 15:55 op.txt
+-rwxrwxr-x 1 rajasck rajasck  167 Feb  6 20:07 script1.sh
+-rwxrwxr-x 1 rajasck rajasck   64 Feb  6 20:28 script2.sh
+-rwxrwxr-x 1 rajasck rajasck  109 Feb  6 20:15 script3.sh
+-rwxrwxr-x 1 rajasck rajasck  226 Feb  6 20:47 script4.sh
+-rwxrwxr-x 1 rajasck rajasck  362 Feb  6 21:12 script5.sh
+-rwxrwxr-x 1 rajasck rajasck 1238 Mar 10 20:51 script6.sh
+-rwxrwxr-x 1 rajasck rajasck  567 Mar 22 18:39 script7.sh
+-rwxrwxr-x 1 rajasck rajasck  158 Mar 22 19:53 script8.sh
+-rwxrwxr-x 1 rajasck rajasck   94 Mar 22 20:10 script9.sh
+-rw-rw-r-- 1 rajasck rajasck   14 Mar 22 19:51 test.txt
