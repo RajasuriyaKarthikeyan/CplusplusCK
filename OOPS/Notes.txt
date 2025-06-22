@@ -1,0 +1,64 @@
+Key features of Static Member Functions
+    There's no access to this pointer with static functions as they're not tied to an object instance.
+    These functions can be invoked using a class name.
+    They can only work with static members or other static functions of the class.
+
+this Pointer in Const Member Functions Vs Static Member Functions
+    In const member functions, this pointer is a pointer to a constant object (const MyClass*),
+    where the object’s members cannot be modified within the function, resulting in an object 
+    remaining unchanged when calling const functions.
+
+    Whereas static member functions don't have this pointer because they are not associated with 
+    any specific instance of the class, they belong to the class itself and can only access 
+    static members or methods, as they do not operate on object-specific data.
+
+C++ Friend Function
+    A friend function of a class is defined outside that class scope but it has the right to access all 
+    private and protected members of the class. Even though the prototypes for friend functions appear 
+    in the class definition, friends are not member functions.
+
+A virtual function is a function in a base class that is declared using the keyword virtual. 
+Defining in a base class a virtual function, with another version in a derived class, signals to the compiler
+that we don't want static linkage for this function.
+
+A virtual function in C++ is a member function in a base class, which is further overridden in derived classes. 
+This helps in enabling runtime polymorphism, which means the function to be executed is determined at runtime, 
+not compile-time as the function that gets called depends on the actual object type, not the pointer or reference type
+
+When we declare a function as virtual in the base class, it enables dynamic binding instead of static binding.
+For a class with virtual functions, the compiler creates a vtable, which stores pointers to those functions.
+Here each object of a class with virtual functions has a vptr, which points to the class's vtable.
+Then a base class pointer uses vptr to fetch the correct function from the vtable at runtime, ensuring the derived class's overridden function is called.
+
+What we do want is the selection of the function to be called at any given point in the program to be based 
+on the kind of object for which it is called. This sort of operation is referred to as dynamic linkage, or late binding.
+
+Constructors, Static, and Friend Functions cannot be virtual.
+
+
+It is possible that you want to include a virtual function in a base class so that
+it may be redefined in a derived class to suit the objects of that class, but that 
+there is no meaningful definition you could give for the function in the base class.
+
+A Class with a pure virtual function becomes an abstract class and cannot be instantiated 
+and If a derived class does not override a pure virtual function, It also becomes abstract.
+
+We can change the virtual function area() in the base class to the following −
+
+class Shape {
+   protected:
+      int width, height;
+
+   public:
+      Shape(int a = 0, int b = 0) {
+         width = a;
+         height = b;
+      }
+      
+      // pure virtual function
+      virtual int area() = 0;
+};
+The = 0 tells the compiler that the function has no body and above virtual function will be called pure virtual function.
+
+
+
