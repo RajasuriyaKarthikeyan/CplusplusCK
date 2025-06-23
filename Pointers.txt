@@ -121,3 +121,10 @@ std::unique_ptr<int> ptr = std::make_unique<int>(5);
 ---
 
 Would you like a **diagram**, **quiz**, or **sample code** to test your understanding of pointers?
+
+| Smart Pointer | Ownership  | Copyable      | Automatic Delete                | Use Case               |
+| ------------- | ---------- | ------------- | ------------------------------- | ---------------------- |
+| `unique_ptr`  | Exclusive  | ❌ (move only) | ✅                               | Unique ownership, fast |
+| `shared_ptr`  | Shared     | ✅             | ✅ (when last reference is gone) | Shared ownership       |
+| `weak_ptr`    | Non-owning | ✅             | ❌ (no ownership)                | Prevent cyclic refs    |
+
