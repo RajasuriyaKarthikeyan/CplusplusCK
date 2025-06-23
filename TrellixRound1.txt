@@ -170,8 +170,115 @@ c2 = mb;
 
 
 move constructor,
-dangling ptr,
+### **Move Constructor in C++**
+
+A **move constructor** is a special constructor in C++ used to transfer resources from one object to another **without copying**. It is part of the **move semantics** introduced in **C++11** to improve performance, especially with objects that manage dynamic memory or other resources.
+
+---
+
+### 🔧 **Syntax of a Move Constructor**
+
+```cpp
+ClassName(ClassName&& other);
+```
+
+The `&&` indicates an **rvalue reference**, meaning it can bind to temporary objects that are about to be destroyed.
+
+---
+
+### ✅ **Why Use a Move Constructor?**
+
+It avoids **deep copying** large data structures (e.g., vectors, strings) by **stealing** the internal data from the source object.
+
+---
+
+### 📦 **Example**
+
+```cpp
+#include <iostream>
+#include <vector>
+
+class MyClass {
+    int* data;
+public:
+    // Constructor
+    MyClass(int value) {
+        data = new int(value);
+        std::cout << "Constructor called\n";
+    }
+
+    // Copy Constructor
+    MyClass(const MyClass& other) {
+        data = new int(*other.data);
+        std::cout << "Copy constructor called\n";
+    }
+
+    // Move Constructor
+    MyClass(MyClass&& other) noexcept {
+        data = other.data;
+        other.data = nullptr;
+        std::cout << "Move constructor called\n";
+    }
+
+    // Destructor
+    ~MyClass() {
+        delete data;
+        std::cout << "Destructor called\n";
+    }
+
+    void print() {
+        if (data)
+            std::cout << "Data: " << *data << "\n";
+        else
+            std::cout << "Data is null\n";
+    }
+};
+
+int main() {
+    MyClass a(42);             // Constructor
+    MyClass b = std::move(a);  // Move constructor
+    b.print();                 // Prints 42
+    a.print();                 // Data is null
+}
+```
+
+---
+
+### 🧠 **Key Notes**
+
+* The move constructor is triggered when an object is **initialized from an rvalue** (like `std::move(obj)`).
+* If no move constructor is defined, C++ falls back to **copy constructor**.
+* Mark it as `noexcept` if it cannot throw—this helps performance in STL containers.
+
+---
+
 cross compile
+**Cross-compilation** is the process of compiling code on one platform (called the **host**) to run on a different platform (called the **target**).
+
+### When is Cross-Compilation Used?
+
+It’s commonly used in scenarios where:
+
+* The target system is too **resource-constrained** to compile code itself (e.g., embedded devices, microcontrollers).
+* The target system runs a **different architecture** or **operating system** than the development system (e.g., compiling on x86 for an ARM-based system).
+
+### Example
+
+You’re developing software on a PC running Windows or Linux (**host**), but your application is intended to run on a Raspberry Pi or an Android phone (**target**). The processor architectures (x86 vs ARM) are different, so you can't directly run code compiled on your PC on the Pi or phone.
+
+Instead, you use a **cross-compiler**—a tool that generates executable code for the target system from the host.
+
+### Tools
+
+* **GCC Cross Compiler**: You can install versions of `gcc` configured for cross-compilation, like `arm-linux-gnueabihf-gcc`.
+* **CMake + Toolchains**: CMake supports cross-compiling by specifying a toolchain file.
+* **Buildroot / Yocto**: Popular frameworks for building complete cross-compiled Linux systems.
+
+---
+
+Let me know if you'd like an example setup for a specific platform (e.g., compiling for ARM on Linux).
+
+
 singleton
 
 
