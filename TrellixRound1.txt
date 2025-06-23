@@ -1,0 +1,177 @@
+void processVector(std::vector<int> v) {
+    ??? // Code to print values here
+
+	for(int i=0;i<v.size();i++){
+	cout << v[i] << endl;		
+}
+
+for(auto i: v){
+	cout << i << endl;
+}
+
+processVector(std::vector<int>{1, 2, 3, 4});
+\
+
+removeDuplicates(Node *head){
+
+unordered_map<int, int> umap;
+Node *temp = head;
+Node *prev = NULL;
+
+while(temp != NULL){
+	int x = temp->data;
+	umap[x]++;
+	if(umap[x] > 1){
+		temp->next = temp->next;
+		prev->next = temp	
+	} else {
+		prev = temp;
+		temp=temp->next;
+	}
+	
+}
+
+
+}
+
+
+int main() {
+    Node* head = nullptr;
+
+    // List: 10 -> 12 -> 11 -> 11 -> 12 -> 11 -> 10
+    push(head, 10);
+    push(head, 11);
+    push(head, 12);
+    push(head, 11);
+    push(head, 11);
+    push(head, 12);
+    push(head, 10);
+
+    removeDuplicates(head);  // WRITETHIS
+
+return 0;
+}
+
+
+ps | grep -i "abc"
+
+
+cat -n a.txt
+
+
+class shape {
+	protected:
+		int length, breadth, height;
+
+	public:
+		Shape(Shape &s){
+				
+}
+		virtual void calculateArea();		
+};
+
+class rectangle: public shape {
+	public:
+		rectangle(int l, int b){
+		length=l;
+		breadth=b;
+		}
+		void calculateArea(){
+			cout << length*breadth;
+		}		
+
+};
+
+class triangle: public shape{
+{
+	public:
+		triangle(int b, int h){
+		breadth = b;
+		height = h;
+		}
+		void calculateArea(){
+			cout << (breadth*height)/2;
+		}		
+
+};
+
+void main(){
+	Shape* s;
+	rectangle r(10,20);
+	triangle t(5,10);
+	s = &r;
+	s->calculateArea(); //print rectangle Area
+	s = &t;
+	s->calculateArea(); //print Triangle Area
+
+}
+
+
+mutex m;
+int counter_g = 0;
+
+void increment(){
+	m.lock();
+	counter_g++;
+	m.unlock();
+}
+
+int main(){
+	Thread t1(increment);
+	Thread t2(increment);
+
+	t1.join(); //wait for t1 thread to completion
+	t2.join(); //wait for t1 thread to completion
+
+}
+
+
+int func1(){
+	cout << var1;
+
+	static int var2 = 0;
+	var++;
+	cout << var;
+	return var1
+}
+
+int func1(int var1){ // 
+	cout << var1;
+	return
+}
+
+int main(){
+	cout << func1();
+}
+
+
+
+
+
+
+enum{
+	red,
+	blue,
+	green,
+	black,
+} color;
+
+enum{
+	mb,
+	mbw,
+	tata,
+
+} cars;
+
+color c1 = 2;
+cars c2 = 2;
+c1 = green;
+c2 = mb;
+
+
+move constructor,
+dangling ptr,
+cross compile
+singleton
+
+
