@@ -1,0 +1,60 @@
+Sure! In C++11, the Standard Library introduced three main types of smart pointers to help manage dynamic memory safely:
+
+---
+
+### 1. **`std::unique_ptr`**
+
+* **Ownership:** Exclusive — only one `unique_ptr` owns the object at a time.
+* **Copying:** Not copyable, but movable.
+* **Use case:** When you want strict ownership and automatic cleanup without sharing.
+* **Example:**
+
+  ```cpp
+  std::unique_ptr<int> p = std::make_unique<int>(10);
+  ```
+
+---
+
+### 2. **`std::shared_ptr`**
+
+* **Ownership:** Shared — multiple `shared_ptr`s can own the same object.
+* **Copying:** Copyable and movable.
+* **Mechanism:** Uses reference counting internally; deletes the object when the last owner goes away.
+* **Use case:** When ownership is shared between multiple parts of a program.
+* **Example:**
+
+  ```cpp
+  std::shared_ptr<int> p1 = std::make_shared<int>(20);
+  std::shared_ptr<int> p2 = p1; // shared ownership
+  ```
+
+---
+
+### 3. **`std::weak_ptr`**
+
+* **Ownership:** Non-owning — does **not** contribute to reference count.
+* **Purpose:** To hold a weak reference to an object managed by a `shared_ptr` without preventing its destruction.
+* **Use case:** Break cyclic references and safely observe an object without extending its lifetime.
+* **Example:**
+
+  ```cpp
+  std::shared_ptr<int> sp = std::make_shared<int>(30);
+  std::weak_ptr<int> wp = sp; // weak reference
+  if (auto p = wp.lock()) {
+      // object is still alive
+  }
+  ```
+
+---
+
+### Summary Table
+
+| Smart Pointer | Ownership Model        | Copyable | Use Case                                             |
+| ------------- | ---------------------- | -------- | ---------------------------------------------------- |
+| `unique_ptr`  | Exclusive              | No       | Sole ownership, lightweight management               |
+| `shared_ptr`  | Shared (ref-counted)   | Yes      | Shared ownership, multiple owners                    |
+| `weak_ptr`    | Observing (non-owning) | No       | Weak references to avoid cycles or dangling pointers |
+
+---
+
+Let me know if you want code examples or deeper details on any of these!
