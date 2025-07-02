@@ -1,0 +1,15 @@
+riscv64-unknown-elf-gcc -O0 -ggdb -nostdlib -march=rv32i -mabi=ilp32 -Wl,-Tm.ld m.s
+riscv64-unknown-elf-objcopy  -O binary main.elf main.bin
+xxd -e -c 4 -g 4 main.bin
+
+qemu-system-riscv32 -S -M virt -nographic -bios none -kernel main.elf -gdb tcp::1234
+
+gdb-multiarch main.elf -ex "target remote localhost:1234" -ex "break _start" -ex "continue" -q
+
+gdb-multiarch main.elf -ex "target remote localhost:1234" -ex "load" -ex "break _start" -ex "set \$pc = _start" -ex "dashboard -layout" -q
+
+gdb-multiarch main.elf -ex "target remote localhost:1234" -ex "load" -ex "set \$pc = 0x08000000" -ex "break _start" -ex "dashboard -layout" -q
+
+gdb-multiarch main.elf -ex "target remote localhost:1234" -ex "load" -ex "set \$pc = _start" -ex "break _start" -ex "dashboard -layout" -q
+
+gdb-multiarch main.elf -ex "target remote localhost:1234" -ex "load" -ex "break _start" -ex "dashboard -layout" -q
