@@ -1,0 +1,62 @@
+Class:
+    - user defined data type which servers as a blueprint for creating object
+    - Define data members and methods that operate on data
+
+Object:
+    - instance of class (varibale of class datatype)
+
+construtor : called when object got initialized and helps to initialize date member values
+destructor : call when object goes out of scope
+
+Types of construtor:
+ default, copy, move, parametrized, delaget, default parametrized
+
+Encapsulation : Binding data and method together to achive certain functionality
+Abstraction : Hiding essential details by showing only the abstract layer
+Polymorphism : abiliity to exist in more than one form 
+    -> Compile Time (function and opertor overaloading)
+    -> Run Time (virtual function and pure virtual function)
+Inheritance : adaption behaviour and functionality of other classes
+
+virtual function : member function in a base class that can be overridden in a derived class and 
+                    is accessed polymorphically via base class pointers or references.
+
+When a class has virtual functions, the compiler:
+    Creates a VTable (Virtual Table) for that class.
+    Stores a hidden vptr (virtual pointer) inside each object.
+    The vptr points to that class's vtable.
+    When calling a virtual function through a pointer/reference, the vtable is consulted to find the correct override.
+
+| Term   | Description                                                                                  |
+| ------ | -------------------------------------------------------------------------------------------- |
+| VTable | A static array of function pointers created by the compiler. One per class (not per object). |
+| VPtr   | A hidden pointer in each object pointing to the class's vtable.                              |
+
+abstract class : contains only pure virtual function
+Interface : contan pure virtual function and virtual destructor
+
+| Feature                         | Abstract Class                    | Interface (C++ style)                |
+| ------------------------------- | --------------------------------- | ------------------------------------ |
+| Contains pure virtual functions |   Yes                             |   Yes                                |
+| Can have data members           |   Yes                             |   No (ideally)                       |
+| Can have implemented methods    |   Yes                             |   No                                 |
+| Instantiation                   |   Not allowed                     |   Not allowed                        |
+| Inheritance                     | Used for **common base behavior** | Used for **pure contract/interface** |
+
+
+Templates : in C++ allow generic programming — you write code once and use it with different data types.
+
+| Without Template                | With Template              |
+| ------------------------------- | -------------------------- |
+| Code duplication for every type | One function/class for all |
+| Type-specific logic only        | Generic, reusable code     |
+| Hard to maintain                | Easy to scale & maintain   |
+
+| Feature             | Description                          |
+| ------------------- | ------------------------------------ |
+| Function Template   | Write one function for all types     |
+| Class Template      | Write one class for all types        |
+| Specialization      | Override for specific type behaviors |
+| Multiple Parameters | Support more than one generic type   |
+
+
