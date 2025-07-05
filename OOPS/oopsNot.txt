@@ -60,3 +60,40 @@ Templates : in C++ allow generic programming — you write code once and use it 
 | Multiple Parameters | Support more than one generic type   |
 
 
+Exceptions - when program throws error at runtime it will help to handle it using try catch and throw
+
+| Keyword  | Purpose                                           |
+| -------- | ------------------------------------------------- |
+| `try`    | Block of code to monitor                          |
+| `throw`  | Used to signal an error                           |
+| `catch`  | Handles the thrown exception                      |
+| `what()` | Returns the error message (from `std::exception`) |
+
+
+| Exception Type       | Description                                         |
+| -------------------- | --------------------------------------------------- |
+| `std::exception`     | Base class for all standard exceptions              |
+| `std::logic_error`   | Errors in program logic (detectable before runtime) |
+| `std::runtime_error` | Errors detectable only during runtime               |
+
+| Type                    | Description                                   |
+| ----------------------- | --------------------------------------------- |
+| `std::invalid_argument` | Invalid arguments passed to a function        |
+| `std::domain_error`     | Domain errors (e.g., sqrt of negative number) |
+| `std::length_error`     | Exceeding maximum allowed size                |
+| `std::out_of_range`     | Accessing elements out of container bounds    |
+
+| Type                   | Description                 |
+| ---------------------- | --------------------------- |
+| `std::range_error`     | Result out of allowed range |
+| `std::overflow_error`  | Arithmetic overflow         |
+| `std::underflow_error` | Arithmetic underflow        |
+
+| Type                     | Header       | Description                                                    |
+| ------------------------ | ------------ | -------------------------------------------------------------- |
+| `std::bad_alloc`         | `<new>`      | Thrown when `new` fails to allocate memory                     |
+| `std::bad_cast`          | `<typeinfo>` | Thrown by `dynamic_cast` when casting fails                    |
+| `std::bad_typeid`        | `<typeinfo>` | Thrown when using `typeid` on null pointer to polymorphic type |
+| `std::ios_base::failure` | `<ios>`      | Thrown by I/O streams on failure                               |
+
+
