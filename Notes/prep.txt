@@ -1,0 +1,87 @@
+In C++, typeinfo is part of the Run-Time Type Information (RTTI) system and is defined in the <typeinfo> header. 
+It allows you to get information about the type of an object during program execution, which is especially useful 
+when working with polymorphism (i.e., base class pointers or references pointing to derived class objects).
+
+🔧 What typeinfo Does
+It provides the typeid operator, which returns a reference to a std::type_info object.
+
+That type_info object contains type-related information such as:
+
+The name of the type (via .name())
+
+Ability to compare types (via ==, !=, etc.)
+
+Great question!
+
+### 🔧 What is **Name Mangling**?
+
+**Name mangling** is a process used by C++ compilers to **encode additional information** (like function arguments, namespaces, class types, etc.) into the names of functions, classes, and variables during compilation.
+
+This is necessary because:
+
+* C++ supports **function overloading**, templates, namespaces, etc.
+* The linker (which combines compiled code) needs **unique names** for each symbol (function or variable).
+* The C linker doesn't understand C++ features, so the compiler must **"mangle"** names to make them unique.
+
+---
+
+### 🔓 What is **Demangling**?
+
+**Demangling** is the reverse process: converting the mangled names back into **readable, original C++ names**.
+
+---
+
+### 🧪 Example
+
+Suppose you have this C++ function:
+
+```cpp
+void greet(std::string name);
+```
+
+The C++ compiler might **mangle** this into something like:
+
+```
+_Z5greetNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+```
+
+That looks unreadable. But if you **demangle** it (using tools like `c++filt`), you get:
+
+```
+greet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+```
+
+Which is closer to the original declaration.
+
+---
+
+### 🛠 Common Use Cases for Demangling
+
+* **Debugging**: When you get an error or crash with a mangled symbol in a stack trace.
+* **RTTI Output**: `typeid(...).name()` often returns a mangled name.
+* **Reverse Engineering**: Understanding binary/executable files.
+
+---
+
+### ✅ How to Demangle (on Linux)
+
+```bash
+echo '_Z3addii' | c++filt
+```
+
+**Output:**
+
+```
+add(int, int)
+```
+
+---
+
+### Summary
+
+| Term          | Meaning                                                           |
+| ------------- | ----------------------------------------------------------------- |
+| **Mangled**   | Compiler-encoded names for functions/objects. Not human-readable. |
+| **Demangled** | Human-readable version of the mangled name.                       |
+
+Let me know if you'd like a C++ code snippet to show the mangling/demangling process!

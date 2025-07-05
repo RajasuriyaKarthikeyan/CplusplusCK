@@ -7,10 +7,6 @@ class Shape{
         int length, breadth;
 
     public:
-        // Shape(int l,int b){
-        //     length=l;
-        //     breadth = b;
-        // }
 
         void setData(int l, int b){
             length = l;
@@ -25,7 +21,7 @@ class rectangle: public Shape{
     
     public:
         rectangle(int l, int b){
-            setData(l,b);
+            length = l; breadth = b;
         }
         int calculateArea(){
             area = length*breadth;
@@ -34,6 +30,7 @@ class rectangle: public Shape{
 };
 
 int main(){
+    
     rectangle r(10,200);
     cout << "Area(10,200) : "<< r.calculateArea() << endl;
     r.setData(2,34);
