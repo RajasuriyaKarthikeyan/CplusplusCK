@@ -87,7 +87,30 @@ used to minimize memory usage by sharing common state across many similar object
 | **Proxy**     | Control access to an object                    |
 
 
+(C) - Behavioral Pattern
+Behavioral design patterns are a subsetof design patterns in software development that deal with the 
+communication and interaction between objects and classes. They focus on how objects and classes collaborate 
+and communicate to accomplish tasks and responsibilities
+
+C1 - Observer - (X)
+an object (Subject) maintains a list of dependents (Observers) and notifies them automatically of any state changes,
+usually by calling one of their methods.
+
+C2 - Strategy - (X)
+define a family of algorithms, encapsulate each one, and make them interchangeable at runtime 
+without changing the context (i.e., the main object using them).
 
 
-
-
+| Pattern                     | When to Use                                                 |
+| --------------------------- | ----------------------------------------------------------- |
+| **Chain of Responsibility** | Pass request along a chain of handlers                      |
+| **Command**                 | Encapsulate requests as objects                             |
+| **Interpreter**             | Interpret expressions based on a grammar                    |
+| **Iterator**                | Sequentially access a collection without exposing structure |
+| **Mediator**                | Centralize communication between objects                    |
+| **Memento**                 | Capture and restore object state                            |
+| **Observer**                | Notify dependents of state changes                          |
+| **State**                   | Change behavior based on internal state                     |
+| **Strategy**                | Swap algorithms dynamically                                 |
+| **Template Method**         | Define a skeleton with steps customizable by subclasses     |
+| **Visitor**                 | Perform operations without changing classes                 |
