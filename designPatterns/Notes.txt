@@ -1,0 +1,47 @@
+A design pattern in C++ is a generic repeatable solution to a frequently occurring problem in software design that is used in software engineering. 
+model for problem-solving that may be applied in a variety of contexts.
+
+| Pattern   | Type       | Use Case                                |
+| --------- | ---------- | --------------------------------------- |
+| Singleton | Creational | Only one global instance                |
+| Factory   | Creational | Creating objects based on input         |
+| Adapter   | Structural | Interface conversion                    |
+| Decorator | Structural | Add behavior at runtime                 |
+| Observer  | Behavioral | Notify multiple objects of state change |
+| Strategy  | Behavioral | Swap algorithms at runtime              |
+
+
+(A) Creational pattern:
+Deal with the process of object creation, trying to make it more flexible and efficient. 
+It makes the system independent and how its objects are created, composed, and represented.
+
+A1 - Factory pattern
+provide interface for creating object but leaves init to his derived ones
+object creation process is complex or varies under different conditions, using a factory method 
+can make your client code simpler and promote reusability
+
+A2 - Singleton pattern
+only one instance of a class can exist in the entire program. 
+try to create another instance of the class, it will return the same instance that was created earlier.
+single database connection shared by multiple objects as creating a separate database connection for every object may be costly. 
+
+A3 - Abstract pattern
+an interface for creating families of related or dependent objects without specifying their concrete classes.
+It’s useful when your application needs to be platform-independent or when working with interchangeable product families
+
+A4 - Builder pattern
+used to construct complex objects step by step. It separates object construction from its representation,
+allowing the same construction process to create different representations.
+
+A5 - Prototype
+used to clone objects, especially when creating new objects is expensive or complex.
+Instead of building an object from scratch, you copy an existing one — like making a duplicate key from the original.
+
+
+| Pattern              | When to Use                                                           |
+| -------------------- | --------------------------------------------------------------------- |
+| **Singleton**        | One instance, global access                                           |
+| **Factory Method**   | Subclass decides which class to instantiate                           |
+| **Abstract Factory** | Create families of related objects                                    |
+| **Builder**          | Step-by-step creation of complex objects                              |
+| **Prototype**        | Clone existing objects, especially when creation is costly or complex |
