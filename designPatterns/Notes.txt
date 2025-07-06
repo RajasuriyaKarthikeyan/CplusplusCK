@@ -15,12 +15,12 @@ model for problem-solving that may be applied in a variety of contexts.
 Deal with the process of object creation, trying to make it more flexible and efficient. 
 It makes the system independent and how its objects are created, composed, and represented.
 
-A1 - Factory pattern
+A1 - Factory pattern (X)
 provide interface for creating object but leaves init to his derived ones
 object creation process is complex or varies under different conditions, using a factory method 
 can make your client code simpler and promote reusability
 
-A2 - Singleton pattern
+A2 - Singleton pattern (X)
 only one instance of a class can exist in the entire program. 
 try to create another instance of the class, it will return the same instance that was created earlier.
 single database connection shared by multiple objects as creating a separate database connection for every object may be costly. 
@@ -45,3 +45,49 @@ Instead of building an object from scratch, you copy an existing one — like ma
 | **Abstract Factory** | Create families of related objects                                    |
 | **Builder**          | Step-by-step creation of complex objects                              |
 | **Prototype**        | Clone existing objects, especially when creation is costly or complex |
+
+
+(B) Structural design pattern:
+subset of design patterns in software development that focus on the composition of classes or objects to form larger,
+more complex structures. They help in organizing and managing relationships between objects to achieve greater flexibility, 
+reusability, and maintainability in a software system.
+
+B1 - Adapter - (X)
+allows you to make two incompatible interfaces work together by creating a bridge between them.
+
+B2 - Decorator - (X)
+allows to add behavior to individual objects, either statically or dynamically, 
+without affecting the behavior of other objects from the same class.
+
+B3 - Bridge
+separate an abstraction from its implementation so that the two can vary independently.
+
+B4 - Composite
+used to treat individual objects and groups of objects uniformly. 
+It builds a tree-like structure of objects, where both single items and groups can be treated the same way.
+
+B5 - Facade
+provides a simplified interface to a larger system of classes, libraries, or complex subsystems.
+
+B6 - Proxy
+provides a placeholder or surrogate for another object to control access to it.
+
+B7 - Flyweight
+used to minimize memory usage by sharing common state across many similar objects, rather than storing the same data in each one.
+
+
+| Pattern       | When to Use                                    |
+| ------------- | ---------------------------------------------- |
+| **Adapter**   | Use incompatible interfaces together           |
+| **Bridge**    | Decouple abstraction and implementation        |
+| **Composite** | Treat part-whole hierarchies uniformly         |
+| **Decorator** | Add behavior dynamically without inheritance   |
+| **Facade**    | Provide a simple interface to a complex system |
+| **Flyweight** | Optimize memory by sharing objects             |
+| **Proxy**     | Control access to an object                    |
+
+
+
+
+
+
