@@ -96,4 +96,110 @@ Exceptions - when program throws error at runtime it will help to handle it usin
 | `std::bad_typeid`        | `<typeinfo>` | Thrown when using `typeid` on null pointer to polymorphic type |
 | `std::ios_base::failure` | `<ios>`      | Thrown by I/O streams on failure                               |
 
+File handlling:
+
+| Mode          | Description                     |
+| ------------- | ------------------------------- |
+| `ios::in`     | Open for reading                |
+| `ios::out`    | Open for writing                |
+| `ios::app`    | Append to end of file           |
+| `ios::ate`    | Move to end of file when opened |
+| `ios::trunc`  | Truncate file if it exists      |
+| `ios::binary` | Open in binary mode             |
+
+Namespaces: 
+Namespaces in C++ are used to organize code and avoid naming conflicts,
+especially when multiple libraries or projects define functions, variables, or classes with the same name.
+(eg using 2 different libraries which have same function, so calling Namespaces helps in to choose which function from Namespaces)
+
+To prevent name clashes in large projects or libraries.
+To group related code logically.
+To distinguish between different implementations.
+
+shallow copy
+    Copies pointer values only, not the actual memory they point to.
+    Both objects point to the same memory.
+    Changes in one affect the other.
+    When destructed, double deletion can occur (BAD!).
+
+deep copy
+    Allocates new memory for the copy.
+    Copies the actual content, not just the pointer.
+    Each object is independent
+
+| Feature         | Shallow Copy                   | Deep Copy                             |
+| --------------- | ------------------------------ | ------------------------------------- |
+| Copies pointer? |   Yes                          |   No (copies value instead)           |
+| Independent?    |   No (share memory)            |   Yes                                 |
+| Safe to delete? |   No (can cause double delete) |   Yes                                 |
+| Performance     |   Faster (less memory used)    |   Slightly slower (needs allocation)  |
+
+Memory management
+new to allocate -> delete to deallocate
+new[] to allocate array -> delete[] to deallocate
+
+| Mistake                | Problem                                          |
+| ---------------------- | ------------------------------------------------ |
+| Forgetting `delete`    | Memory leak                                      |
+| `delete` twice         | Double free / undefined behavior                 |
+| `delete` non-heap ptr  | Undefined behavior                               |
+| `delete[]` vs `delete` | Use `delete[]` for arrays allocated with `new[]` |
+
+RAII (Resource Acquisition Is Initialization)
+    Use classes/objects to manage resources (memory, files, etc.)
+    Destructor automatically frees them
+    class MyBuffer {
+        int* buffer;
+        public:
+            MyBuffer(size_t size) { buffer = new int[size]; }
+            ~MyBuffer() { delete[] buffer; }  // auto cleanup
+    };
+
+
+Smart pointers in C++ are objects that manage dynamically allocated memory automatically. 
+They help prevent memory leaks, dangling pointers, and make your code safer and cleaner.
+
+| Smart Pointer     | Ownership Model                      | Auto Deletes? | Copyable?           | Use Case                                 |
+| ----------------- | ------------------------------------ | ------------- | ------------------- | ---------------------------------------- |
+| `std::unique_ptr` | Exclusive ownership                  |   Yes         |   No (only movable) | Single owner                             |
+| `std::shared_ptr` | Shared ownership (ref count)         |   Yes         |   Yes               | Multiple owners (e.g., shared resources) |
+| `std::weak_ptr`   | Non-owning reference to `shared_ptr` |   No          |   Yes               | Break circular references                |
+
+Lambda Expression:
+anonymous functions you can define inline, often used for short callbacks, functional-style programming, 
+and STL algorithms like sort, for_each, etc
+
+| Capture Syntax | Meaning                                |
+| -------------- | -------------------------------------- |
+| `[ ]`          | Capture nothing                        |
+| `[=]`          | Capture all variables **by value**     |
+| `[&]`          | Capture all variables **by reference** |
+| `[x]`          | Capture variable `x` by value          |
+| `[&x]`         | Capture variable `x` by reference      |
+
+| Feature           | Use                                |
+| ----------------- | ---------------------------------- |
+| `[ ]`             | Capture variables                  |
+| `mutable`         | Modify captured-by-value vars      |
+| `auto`            | For storing lambdas                |
+| `std::function<>` | Store lambdas with different types |
+
+
+RTTI
+identify the type of an object at runtime — particularly useful when dealing with polymorphism.
+
+typeid – Get the actual type of an object at runtime.
+dynamic_cast – Safely downcast a base pointer to a derived class.
+
+RTTI only works when the class has at least one virtual function (i.e., polymorphic class).
+
+
+
+
+| Feature        | Purpose                             | Usage Example                             |
+| -------------- | ----------------------------------- | ----------------------------------------- |
+| `typeid`       | Get actual type at runtime          | `typeid(*ptr).name()`                     |
+| `dynamic_cast` | Safe downcasting with runtime check | `Derived* d = dynamic_cast<Derived*>(b);` |
+| Requires       | At least one virtual function       |                                           |
+
 

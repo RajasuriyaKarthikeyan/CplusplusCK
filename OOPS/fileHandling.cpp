@@ -4,7 +4,7 @@
 using namespace std;
 
 
-class FileHandline{
+class FileHandling{
     public:
         void Write(string fileName){
             ofstream outFile(fileName);
@@ -20,7 +20,7 @@ class FileHandline{
         }
 
         void Read(string fileName){
-            ifstream inFile("example.txt");
+            ifstream inFile(fileName);
             string line;
 
             if (!inFile) {
@@ -36,9 +36,20 @@ class FileHandline{
         }
 
         void EditFile(string fileName){
+            ofstream file(fileName, ios::app); // Open in append mode
 
+            if (file.is_open()) {
+                file << "Appended line." << endl;
+                file.close();
+            } else {
+                cout << "Unable to open file." << endl;
+            }
         }
 };
 int main(){
-
+    FileHandling f1;
+    f1.Write("SuriyaFile.txt");
+    f1.Read("SuriyaFile.txt");
+    f1.EditFile("SuriyaFile.txt");
+    f1.Read("SuriyaFile.txt");
 }
