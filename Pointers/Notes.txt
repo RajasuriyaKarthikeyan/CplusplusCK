@@ -1,0 +1,5 @@
+| Variant                             | Declaration Syntax      | What is `const`?                           | Can you change pointer? | Can you change value? |
+| ----------------------------------- | ----------------------- | ------------------------------------------ | ----------------------- | --------------------- |
+| 1. **Pointer to constant**          | `const int* ptr;`       | The **value** being pointed to is constant | ✅ Yes                   | ❌ No                  |
+| 2. **Constant pointer**             | `int* const ptr;`       | The **pointer** itself is constant         | ❌ No                    | ✅ Yes                 |
+| 3. **Constant pointer to constant** | `const int* const ptr;` | Both pointer and value are constant        | ❌ No                    | ❌ No                  |
