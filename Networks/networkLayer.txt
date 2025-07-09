@@ -1,0 +1,100 @@
+Network Layer:
+Network layer takes the responsibility for routing packets from source to destination within or outside a subnet. 
+it has the responsibility to route the packets from source to destination, mapping different addressing schemes and protocols.
+
+Functionalities: routing
+Addressing devices and networks.
+Populating routing tables or static routes.
+Queuing incoming and outgoing data and then forwarding them according to quality of service constraints set for those packets.
+Internetworking between two different subnets.
+Delivering packets to destination with best efforts.
+Provides connection oriented and connection less mechanism.
+
+Features:
+Quality of service management
+Load balancing and link management
+Security
+Interrelation of different protocols and subnets with different schema.
+Different logical network design over the physical network design.
+L3 VPN and tunnels can be used to provide end to end dedicated connectivity.
+
+Network address can be of one of the following:
+Unicast (destined to one host)
+Multicast (destined to group)
+Broadcast (destined to all)
+Anycast (destined to nearest one)
+
+Routing :
+When a device has multiple paths to reach a destination, it always selects one path by preferring it over others. 
+This selection process is termed as Routing
+---
+Unicast Protocol:
+Distance Vector Routing Protocol
+Distance Vector is simple routing protocol which takes routing decision on the number of hops between source and destination. 
+A route with less number of hops is considered as the best route.
+
+Link State Routing Protocol
+Link State protocol is slightly complicated protocol than Distance Vector. 
+It takes into account the states of links of all the routers in a network. 
+This technique helps routes build a common graph of the entire network.
+example, Open Shortest Path First (OSPF) and Intermediate System to Intermediate System (ISIS)
+----
+Multicast Routing Protocols
+DVMRP  - Distance Vector Multicast Routing Protocol
+MOSPF  - Multicast Open Shortest Path First
+CBT  - Core Based Tree
+PIM  - Protocol independent Multicast
+
+Protocol Independent Multicast is commonly used now. It has two flavors:
+
+PIM Dense Mode
+This mode uses source-based trees. It is used in dense environment such as LAN.
+
+PIM Sparse Mode
+This mode uses shared trees. It is used in sparse environment such as WAN.
+
+-----
+
+Flooding - When a packet is received, the routers send it to all the interfaces except the one on which it was received.
+
+Time to Live (TTL) - can be used to avoid infinite looping of packets. 
+
+There exists another approach for flooding, which is called Selective Flooding to reduce the overhead on the network. 
+In this method, the router does not flood out on all the interfaces, but selective ones.
+
+Shortest Path
+Routing decision in networks, are mostly taken on the basis of cost between source and destination. Hop count plays major role here. 
+Shortest path is a technique which uses various algorithms to decide a path with minimum number of hops.
+
+Common shortest path algorithms are:
+Dijkstra's algorithm
+Bellman Ford algorithm
+Floyd Warshall algorithm
+-----
+
+
+ARP (Address Resolution Protocol) 
+for finding the mac address of destination with only knowing the ip, by asking destination domain who's ip is this and provide ur mac
+
+ICMP (Internet Control message protocol)
+Any feedback about network is sent back to the originating host. If some error in the network occurs, it is reported by means of ICMP. 
+ICMP contains dozens of diagnostic and error reporting messages.
+
+IPv4 - 32 bit address - 5 classes - uses tcp/ip host addressing mechanism
+IPV6 - 128 bit address - 
+
+----
+
+Routing Information Protocol'' (RIP) is a distance-vector protocol which uses hop count as its primary metric. 
+
+Border Gateway Protocol (BGP) Border Gateway Protocol considers all peering partners that a router has and sends traffic 
+to the router closest to the datas destination. The main goal of BGP is to find any path to the destination that is loop-free.
+
+OSPF - 
+
+NAT - 
+Network Address translation is used to translate Private IP address to Public IP address to communicate LAN side of the Device
+to Global Network. Network address translation can be processed in Router or Firewall.
+
+
+

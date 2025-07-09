@@ -140,8 +140,6 @@ When host on the shared link tries to transfer the data, it has a high probabili
 such as CSMA/CD to equip capability of accessing a shared media among multiple Systems.
 ---------------
 
-Network Layer:
-
 
 
 
