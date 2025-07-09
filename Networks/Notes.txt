@@ -1,0 +1,149 @@
+Computer Networks :
+List of Computer connected each other physically or remotely to share info or data within each other.
+
+Tyes:
+PAN - smallest network which is very personal to a user eg: BT
+LAN - spanned inside a building and operated under single administrative system 
+        Eg: Ethernet, Fast Ethernet, GigaLAN
+MAN - enerally expands throughout a city such as cable TV network. 
+        It can be in the form of Ethernet,Token-ring, ATM, or Fiber Distributed Data Interface (FDDI).
+WAN - span across provinces and even a whole country
+
+-----
+Models:
+OSI - 7 layers(App, presentation, session, transport, network, data link, physical ) - Open System Interconnect 
+Internet - 4 layes(App, transport, Internet, link) - TCP/IP model 
+-----
+Hubs - used to connect the network devices
+
+switches - advance version of hubs but it also direct the packet to specific devices (data link layer)
+            When a data frame arrives at any port of a network switch, it examines the destination address, performs necessary checks 
+            and sends the frame to the corresponding device(s). It supports unicast, multicast as well as broadcast communications.
+
+routers - routes data packets between different networks like between LAN and the internet, operates on the network layer 
+            of the OSI model and can also assign IP addresses, due to which it is capable of performing extra functions like
+            security filtering and quality of service (QoS).
+
+gateway - connects two different networks, of different protocols or architectures.
+            a network node that forms a passage between two networks operating with different transmission protocols
+            common type of gateways, the network gateway operates at layer 3, i.e. network layer of the OSI
+
+repeaters - (physical layer)used to amplify or regenerate signals. 
+            used in situations where the signal strength degrades over long distances
+
+bridges - Bridges are used to connect two subnetworks that use interchangeable protocols. 
+        It combines two LANs to form an extended LAN. The main difference between the bridge and repeater is that 
+        the bridge has a penetrating efficiency.
+        A bridge only passes those packets addressed from a node in one network to another node in the other network.
+-----
+Network Sockets - software component within a computer network node that acts as an endpoint for delivering and receiving data
+        The software endpoint of node-internal IPC, which frequently utilizes the same API as a network socket, referred as socket
+        Pipes are formed using the 'Pipe' system call, and sockets are generated with the 'socket' system call.
+
+socket api's
+create() - To construct a socket
+bind() - It's a socket identifier, similar to a phone number for contacting someone.
+connect() - Are you ready to make a connection?
+listen() - Prepared to send a message
+accept() - Confirmation is similar to accepting a call from a sender.
+write() - To send data
+read() - To receive data
+close() - To make a relationship permanent
+-----
+Network Interface Card - hw component without this a computer cant connected to network
+
+port number:
+20,21	TCP	        File Transfer Protocol
+23	TCP	        Telnet
+25	TCP	        Simple Mail Transfer Protocol(SMTP)
+53	TCP and UDP	Domain Name System(DNS)
+110	TCP	        Post Office Protocol(POP3)
+123	UDP	        Network Time Protocol(NTP)
+-----
+TCP/IP(Internet model)
+
+1. Application Layer
+In TCP/IP, the Application layer protocols provide services to the application software running on a computer. 
+The application layer uses HTTP, POP3, and SMTP protocols. 
+The application layer provides an interface between the software running on a computer and the network itself.
+
+2. Transport Layer
+In TCP/IP, the Transport layer includes transmission control protocol (TCP) and user datagram protocol (UDP). 
+TCP provides services to the application layer that reside above the transport layer or higher within the TCP/IP model.
+
+3. Internet Layer (Network Layer)
+The Internet layer in the TCP/IP model is the Network Layer 3 of the OSI model. It stores the IP addresses and the routing data. 
+When data is transmitted from a node on one LAN to a node on a different LAN, the Internet Layer is used. IPv4, IPv6, ICMP, 
+and routing protocols (among others) are the Internet Layer TCP/IP protocols.
+
+4. Host-to-Network or Link Layer
+In TCP/IP, the Host-to-Network layer is also called the network interface or link layer. 
+It provides services to the upper layer within the model. When a hosts or routers IP process chooses to send an IP packet 
+to a different router or host, that host or router then uses the link-layer details to send that packet to the next host/router.
+This layer is the lowermost layer of the TCP/IP model; it is concerned with the physical transmission of data. 
+It is like a combination of the data link layer and physical layer of the OSI model
+-----
+OSI model
+Layer 1	Physical Layer	        Transmission method used to propagate bits through a network
+Layer 2	Data Link Layer	        Frame formatting for transmitting data across a physical communication line.
+Layer 3	Network Layer	        Network addressing and packet transmission on the network.
+Layer 4	Transport Layer	        Data tracking as it moves through a network.
+Layer 5	Session Layer	        Job management tracking
+Layer 6	Presentation Layer	Encoding the language used in transmission.
+Layer 7	Application Layer	User networking applications and interfacing to the network.
+---------------
+
+Data Link Layer
+Data link layer is responsible for converting data stream to signals bit by bit and to send that over the underlying hardware. 
+At the receiving end, Data link layer picks up data from hardware which are in the form of electrical signals, 
+assembles them in a recognizable frame format, and hands over to upper layer.
+
+2 sub-layers:
+Logical Link Control: It deals with protocols, flow-control, and error control
+Media Access Control: It deals with actual control of media
+
+functions:
+Framing
+Data-link layer takes packets from Network Layer and encapsulates them into Frames.Then, it sends each frame bit-by-bit on the 
+hardware. At receiver end, data link layer picks up signals from hardware and assembles them into frames.
+
+Addressing
+Data-link layer provides layer-2 hardware addressing mechanism. Hardware address is assumed to be unique on the link. 
+It is encoded into hardware at the time of manufacturing.
+
+Synchronization
+When data frames are sent on the link, both machines must be synchronized in order to transfer to take place.
+
+Error Control
+Sometimes signals may have encountered problem in transition and the bits are flipped.These errors are detected and attempted to 
+recover actual data bits. It also provides error reporting mechanism to the sender.
+
+Flow Control
+Stations on same link may have different speed or capacity. Data-link layer ensures flow control that enables both machine to 
+exchange data on same speed.
+
+2 protocol:
+stop and wait - forces the sender after transmitting a data frame to stop and wait until the acknowledgement of the data-frame sent is received.
+sliding window - both sender and receiver agree on the number of data-frames after which the acknowledgement should be sent. 
+
+Mac address:
+MAC address is a 48 or 64-bit address associated with a network adapter.
+MAC addresses are linked to the hardware of the network adapters, known as the "hardware address" or "physical address."
+MAC addresses uniquely identify the adapter on the LAN.
+MAC addresses are expressed in hexadecimal notation. For example, "01-23-45-67-89-AB" in a 48-bit address or 
+"01-23-45-67-89-AB-CD-EF" in a 64-bit address. Sometimes, colons (:) are used instead of dashes (-).
+MAC addresses are often considered permanent,
+
+
+Multi-Access
+When host on the shared link tries to transfer the data, it has a high probability of collision. Data-link layer provides mechanism 
+such as CSMA/CD to equip capability of accessing a shared media among multiple Systems.
+---------------
+
+Network Layer:
+
+
+
+
+
+
