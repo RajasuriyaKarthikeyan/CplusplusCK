@@ -1,0 +1,119 @@
+Process - Program in execution
+Thread - lightweight unit of a process
+
+
+| Concept         | Process                              | Thread                                                             |
+| --------------- | ------------------------------------ | ------------------------------------------------------------------ |
+| **What is it?** | An independent program in execution  | A lightweight unit of a process                                    |
+| **Contains**    | Code, data, stack, registers, memory | Shares memory and resources with other threads in the same process |
+
+
+| Feature            | Process                                             | Thread                                                         |
+| ------------------ | --------------------------------------------------- | -------------------------------------------------------------- |
+| **Memory**         | Has its **own memory space**                        | Shares memory with other threads                               |
+| **Creation**       | Slower (needs new memory, resources)                | Faster (less overhead)                                         |
+| **Communication**  | Requires **Inter-Process Communication (IPC)**      | Directly shares variables (easier & faster)                    |
+| **Isolation**      | Highly isolated                                     | Less isolated                                                  |
+| **Failure impact** | Crash in one process doesn’t affect others          | Crash in one thread can affect entire process                  |
+| **Overhead**       | High (due to memory duplication)                    | Low (shared memory, lower switching cost)                      |
+| **Use case**       | Running multiple apps (e.g. browser + music player) | Handling multiple tasks in the same app (e.g. tabs in browser) |
+
+
+```cpp
+void foo() {
+    foo();
+}
+
+int main() {
+    foo();
+}
+```
+
+This is a classic example of **infinite recursion** — where a function calls itself with **no termination condition**.
+
+---
+
+## 🧠 Let's analyze what happens to:
+
+### 1. **Code Segment**:
+
+* This is where the **compiled machine code** of your program lives.
+* It’s **read-only** and **static**.
+* `foo()` and `main()` are stored here once.
+* **Nothing changes here during execution**, even as `foo()` recurses infinitely.
+
+✅ **Unaffected**.
+
+---
+
+### 2. **Data Segment**:
+
+* Holds **global/static variables** (both initialized and uninitialized).
+* Your program doesn't have any globals or static variables, so this segment is also **unaffected**.
+
+✅ **Unaffected**.
+
+---
+
+### 3. **Stack Segment**:
+
+* Here's the interesting part.
+* Every time `foo()` calls itself, a **new stack frame** is pushed onto the **call stack**.
+* Each frame contains:
+
+  * Return address
+  * Local variables (none here, but the frame still exists)
+  * Function parameters (also none)
+* Since there's **no base case** to stop recursion, the stack grows **until it's full**.
+
+### ❌ Eventually:
+
+* You hit a **stack overflow** error (runtime crash).
+* The stack segment **overflows into adjacent memory**, usually causing a segmentation fault.
+
+---
+
+### 🔥 Result:
+
+* Your program **crashes** with a **stack overflow**.
+* On most systems, you’ll get an error like:
+
+  ```
+  Segmentation fault (core dumped)
+  ```
+
+---
+
+### 🧪 Want to test this?
+
+If you run this code, try printing something inside `foo()`:
+
+```cpp
+void foo() {
+    std::cout << "Calling foo\n";
+    foo();
+}
+```
+
+You’ll see:
+
+```
+Calling foo
+Calling foo
+Calling foo
+...
+Segmentation fault
+```
+
+---
+
+### ✅ Summary Table:
+
+| Segment   | Status      | Notes                               |
+| --------- | ----------- | ----------------------------------- |
+| **Code**  | ✅ Unchanged | Function code stored here           |
+| **Data**  | ✅ Unchanged | No global/static vars               |
+| **Stack** | ❌ Overflows | Recursive calls eat up stack memory |
+| **Heap**  | ✅ Unchanged | Not used here                       |
+
+---
