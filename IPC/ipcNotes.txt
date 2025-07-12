@@ -1,0 +1,55 @@
+Communication can be of two types −
+
+Between related processes initiating from only one process, such as parent and child processes.
+
+Between unrelated processes, or two or more different processes.
+
+Pipes − Communication between two related processes. The mechanism is half duplex meaning the first process communicates 
+with the second process. To achieve a full duplex i.e., for the second process to communicate with the first process another 
+pipe is required.
+
+FIFO − Communication between two unrelated processes. FIFO is a full duplex, meaning the first process can communicate with the
+second process and vice versa at the same time.
+
+Message Queues − Communication between two or more processes with full duplex capacity. The processes will communicate with each 
+other by posting a message and retrieving it out of the queue. Once retrieved, the message is no longer available in the queue.
+
+Shared Memory − Communication between two or more processes is achieved through a shared piece of memory among all processes. 
+The shared memory needs to be protected from each other by synchronizing access to all the processes.
+
+Semaphores − Semaphores are meant for synchronizing access to multiple processes. When one process wants to access the memory 
+(for reading or writing), it needs to be locked (or protected) and released when the access is removed. This needs to be repeated by 
+all the processes to secure data.
+
+Signals − Signal is a mechanism to communication between multiple processes by way of signaling. This means a source process will 
+send a signal (recognized by number) and the destination process will handle it accordingly.
+
+
+Required headers:
+#include <sys/types.h>
+#include <unistd.h>
+
+
+code/text segment - normal codes
+data segment - global and static variable
+    uninitialized bss - uninitialized static and global
+    initialized bss - initialized static and global
+heap segment - dynmaic allocated variable/memory
+stack segment - memoru of function and variables
+
+size program.exe - provide all the segment info
+
+fork() - system call to create prodess
+        =0 means child process
+        > 0 parent process
+        < 0 process creation failed
+
+A process can terminate in either of the two ways −
+    Abnormally, occurs on delivery of certain signals, say terminate signal.
+    Normally, using _exit() system call (or _Exit() system call) or exit() library function.
+
+The difference between _exit() and exit() is mainly the cleanup activity. 
+The exit() does some cleanup before returning the control back to the kernel, 
+while the _exit() (or _Exit()) would return the control back to the kernel immediately.
+
+
