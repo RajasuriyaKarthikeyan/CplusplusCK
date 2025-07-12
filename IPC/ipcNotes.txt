@@ -52,4 +52,26 @@ The difference between _exit() and exit() is mainly the cleanup activity.
 The exit() does some cleanup before returning the control back to the kernel, 
 while the _exit() (or _Exit()) would return the control back to the kernel immediately.
 
+#include <sys/wait.h> - headers
+if the parent process exits before the child process, the inti process will beocme the parent of the child process
+To avoid wait() system call need to be used
+The wait() system call has limitation such as it can only wait until the exit of the next child. 
+If we need to wait for a specific child it is not possible using wait(), however, it is possible using waitpid() system call.
+
+The waitpid() system call would wait for specified children to terminate and return its termination status in the buffer 
+
+waitid() system call. This system call waits for the child process to change state.
+
+
+Process Group − Process group is a collection of one or more processes. A process group constitutes of one or more processes sharing 
+the same process group identifier (PGID). A process group ID (PGID) is of the same type (pid_t) as the process ID. 
+A process group has a process group leader, which is the process that creates the group and whose process ID becomes the 
+process group ID of the group.
+
+Sessions − It is a collection of various process groups.
+
+Job Control − This permits a shell user to simultaneously execute multiple commands (or jobs), one in the foreground and all 
+remaining in the background. It is also possible to move the jobs from the foreground to the background and vice-versa.
+
+
 
