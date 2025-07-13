@@ -1,0 +1,9 @@
+pipes - communication between 2 related process
+pipe() - create a pipe , post write() and read() for reading and writing
+
+named pipes(FIFO) - communication between 2 unrelated process
+mknod() - for creating a named pipe - create a special file or file system node such as ordinary file, device file, or FIFO
+mkfifo() - creates a FIFO special file, which is used for named pipe
+
+
+
