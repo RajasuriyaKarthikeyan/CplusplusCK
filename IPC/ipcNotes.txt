@@ -73,5 +73,41 @@ Sessions − It is a collection of various process groups.
 Job Control − This permits a shell user to simultaneously execute multiple commands (or jobs), one in the foreground and all 
 remaining in the background. It is also possible to move the jobs from the foreground to the background and vice-versa.
 
+System call getrusage(), which provides information on system resource usage.
 
+System calls related to accessing and setting resource limits viz., getrlimit(), setrlimit(), prlimit().
+
+headers 
+#include <sys/time.h>
+#include <sys/resource.h>
+int getrusage(int who, struct rusage *usage);
+thread using flags RUSAGE_SELF, RUSAGE_CHILDREN, RUSAGE_THREAD
+
+getrlimit() gets the resource limits in structure rlimit by inputting the resource one needs such as 
+RLIMIT_NOFILE, RLIMIT_NPROC, RLIMIT_STACK, etc.
+int getrlimit(int resource, struct rlimit *rlim);
+
+setrlimit() sets the resource limits as mentioned in the rlimit structure as far as within the limits.
+int setrlimit(int resource, const struct rlimit *rlim);
+
+prlimit() is used for either for retrieving the current resource limits or for updating the resource limits to new values.
+int prlimit(pid_t pid, int resource, const struct rlimit *new_limit, struct rlimit *old_limit);
+
+resource for above header limits
+RLIMIT_NOFILE − Returns the maximum number of file descriptors that can be opened by this process. 
+(example, if it returns 1024, then the process has file descriptors from 0 to 1023.)
+RLIMIT_NPROC − Maximum number of processes that can be created for a user of that process.
+RLIMIT_STACK − The maximum size in bytes of the stack segment for that process.
+
+daemon process - doesnt have any associated shell or terminal is known as the daemon process.
+processes which run in the background to perform actions at predefined intervals and also respond to certain events. 
+The daemon process should not have any user interaction, since it runs as a background process.
+
+zombie process - even after completion , the process entry is presnt in process table
+orphan process - parent procrss completes before child process, the child is orphan
+
+overlay:
+call another process to execute another program from the current file
+#include<unistd.h>
+int execl(const char *path, const char *arg, ...) -> last parameter should be null
 

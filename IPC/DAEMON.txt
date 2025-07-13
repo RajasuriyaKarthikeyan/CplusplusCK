@@ -1,0 +1,6 @@
+Daemon process: pid is 11669 and ppid is 1
+Daemon process: pid is 11669 and ppid is 1
+Daemon process: pid is 11669 and ppid is 1
+Daemon process: pid is 11669 and ppid is 1
+Daemon process: pid is 11669 and ppid is 1
+Done

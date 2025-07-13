@@ -1,0 +1,54 @@
+| **Category**        | **System Call** | **Description**                                                                                            |
+| ------------------- | --------------- | ---------------------------------------------------------------------------------------------------------- |
+| General             | `open()`        | Opens an existing file or creates and opens a new file.                                                    |
+| General             | `creat()`       | Creates and opens a new file.                                                                              |
+| General             | `read()`        | Reads the contents of the file into the required buffer.                                                   |
+| General             | `write()`       | Writes the contents of buffer into the file.                                                               |
+| General             | `close()`       | Closes the file descriptor.                                                                                |
+| General             | `stat()`        | Provides information on the file.                                                                          |
+| Pipes               | `pipe()`        | Creates a pipe for communication, returning two file descriptors for reading and writing.                  |
+| Named Pipes or FIFO | `mknod()`       | Creates a memory device file or special file to create FIFOs.                                              |
+| Named Pipes or FIFO | `mkfifo()`      | Creates a new FIFO.                                                                                        |
+| Shared Memory       | `shmget()`      | Creates a new shared memory segment or gets the identifier of an existing segment.                         |
+| Shared Memory       | `shmat()`       | Attaches the shared memory segment to the calling process's virtual memory.                                |
+| Shared Memory       | `shmdt()`       | Detaches the shared memory segment.                                                                        |
+| Shared Memory       | `shmctl()`      | Performs control operations on shared memory (e.g., `IPC_RMID`, `IPC_STAT`, `IPC_SET`).                    |
+| Message Queues      | `msgget()`      | Creates or accesses a message queue and returns its identifier.                                            |
+| Message Queues      | `msgsnd()`      | Sends a message to a message queue.                                                                        |
+| Message Queues      | `msgrcv()`      | Receives a message from a message queue; blocks if no message is available.                                |
+| Message Queues      | `msgctl()`      | Performs control operations on a message queue (`IPC_RMID`, `IPC_STAT`, `IPC_SET`).                        |
+| Semaphores          | `semget()`      | Creates or accesses a semaphore and returns its identifier.                                                |
+| Semaphores          | `semop()`       | Performs operations like lock (P) and unlock (V) on semaphores.                                            |
+| Semaphores          | `semctl()`      | Performs control operations on semaphores (`IPC_RMID`, `IPC_STAT`, `IPC_SET`).                             |
+| Signals             | `signal()`      | Sets the signal handler for a signal number.                                                               |
+| Signals             | `sigaction()`   | Like `signal()` but provides more control over signal handling (e.g., blocking, information about sender). |
+| Memory Mapping      | `mmap()`        | Maps files into memory for fast access like arrays.                                                        |
+| Memory Mapping      | `munmap()`      | Unmaps the previously mapped files from memory.                                                            |
+
+
+| Feature / Aspect     | **System V IPC**                                           | **POSIX IPC**                                                      |
+| -------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------ |
+| **Types Supported**  | Message Queues, Semaphores, Shared Memory                  | Message Queues, Semaphores, Shared Memory                          |
+| **Introduced In**    | Early UNIX System V                                        | POSIX.1b (Real-Time Extensions)                                    |
+| **Naming**           | Uses integer **keys** (`ftok()` or manual)                 | Uses **name-based identifiers** (like filenames starting with `/`) |
+| **File Descriptors** | Not file descriptor-based                                  | Uses **file descriptor-like** handles for easier integration       |
+| **Persistence**      | IPC objects **persist** in kernel until explicitly removed | Automatically **removed** when all references are closed           |
+| **Cleanup**          | Manual (`msgctl`, `shmctl`, `semctl` with `IPC_RMID`)      | Automatic when all processes close the object                      |
+| **Ease of Use**      | More **complex and verbose**                               | **Simpler and cleaner** API                                        |
+| **Permissions**      | Controlled via `IPC_CREAT`, `IPC_EXCL`, and `IPC_STAT`     | Uses standard **file permission bits**                             |
+| **Thread Safety**    | Not guaranteed                                             | POSIX semaphores and other IPC can be **thread-safe**              |
+| **Namespace**        | System-wide, using kernel ID tables                        | Filesystem-like namespace (under `/dev/shm/` for shared memory)    |
+| **Common Functions** | `msgget`, `msgsnd`, `msgrcv`, `shmget`, `semget`, etc.     | `mq_open`, `mq_send`, `shm_open`, `sem_open`, etc.                 |
+| **Code Example**     | More legacy-style, lower-level API                         | Cleaner, higher-level API                                          |
+
+🔹 POSIX Shared Memory:
+c
+int fd = shm_open("/myshm", O_CREAT | O_RDWR, 0666);
+ftruncate(fd, 1024);
+void* addr = mmap(NULL, 1024, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+🔸 System V Shared Memory:
+c
+key_t key = ftok("file", 65);
+int shmid = shmget(key, 1024, 0666 | IPC_CREAT);
+char* str = (char*) shmat(shmid, NULL, 0);
+
