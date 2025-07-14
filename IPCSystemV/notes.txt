@@ -6,4 +6,60 @@ mknod() - for creating a named pipe - create a special file or file system node 
 mkfifo() - creates a FIFO special file, which is used for named pipe
 
 
+Shared memory - memory shared between two or more processes(unrelated process).
+
+Create the shared memory segment or use an already created shared memory segment (shmget())
+#include <sys/ipc.h>
+#include <sys/shm.h>
+int shmget(key_t key, size_t size, int shmflg) 
+
+Attach the process to the already created shared memory segment (shmat())
+#include <sys/types.h>
+#include <sys/shm.h>
+void * shmat(int shmid, const void *shmaddr, int shmflg)
+
+Detach the process from the already attached shared memory segment (shmdt())
+int shmdt(const void *shmaddr)
+
+Control operations on the shared memory segment (shmctl())
+int shmctl(int shmid, int cmd, struct shmid_ds *buf)
+
+Message Queues - all the processes do not need to access the shared memory but very few processes only need it, 
+it would be better to implement with message queues.
+
+Step 1 − Create a message queue or connect to an already existing message queue (msgget())
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+int msgget(key_t key, int msgflg)
+
+Step 2 − Write into message queue (msgsnd())
+int msgsnd(int msgid, const void *msgp, size_t msgsz, int msgflg)
+
+Step 3 − Read from the message queue (msgrcv())
+int msgrcv(int msgid, const void *msgp, size_t msgsz, long msgtype, int msgflg)
+
+Step 4 − Perform control operations on the message queue (msgctl())
+int msgctl(int msgid, int cmd, struct msqid_ds *buf)
+
+Semaphores -  to protect the critical/common region shared among multiple processes
+
+Binary Semaphores − Only two states 0 & 1, i.e., locked/unlocked or available/unavailable, Mutex implementation.
+Counting Semaphores − Semaphores which allow arbitrary resource count are called counting semaphores.
+
+Step 1 − Create a semaphore or connect to an already existing semaphore (semget())
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/sem.h>
+int semget(key_t key, int nsems, int semflg)
+Step 2 − Perform operations on the semaphore i.e., allocate or release or wait for the resources (semop())
+int semop(int semid, struct sembuf *semops, size_t nsemops)
+struct sembuf {
+   unsigned short sem_num; /* Semaphore set num */
+   short sem_op; /* Semaphore operation */
+   short sem_flg; /* Operation flags, IPC_NOWAIT, SEM_UNDO */
+};
+Step 3 − Perform control operations on the message queue (semctl())
+int semctl(int semid, int semnum, int cmd, )
+
 
