@@ -51,4 +51,3 @@ c
 key_t key = ftok("file", 65);
 int shmid = shmget(key, 1024, 0666 | IPC_CREAT);
 char* str = (char*) shmat(shmid, NULL, 0);
-
