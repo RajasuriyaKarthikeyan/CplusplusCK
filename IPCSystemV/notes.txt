@@ -65,7 +65,4 @@ Step 3 − Perform control operations on the message queue (semctl())
 int semctl(int semid, int semnum, int cmd, )
 
 
-signal - notification to a process indicating the occurrence of an event. Signal is also called software interrupt and is
-not predictable to know its occurrence, hence it is also called an asynchronous event.
-
 
